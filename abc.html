@@ -1,0 +1,31 @@
+<html>
+    <head>
+   <script>
+       findEndBracket = function(){
+           var stack = [];
+      var a =  document.querySelector("#a").value;
+      var lastCharIndex = null;
+      var regex = /[({[\]})]/gi;
+      for (var i = 0; i < a.length; i++) {
+            var bracketsInfo = a.charAt(i).match(regex);
+            if(bracketsInfo){
+                if(bracketsInfo == "(" || bracketsInfo == "[" || bracketsInfo == "{"){
+                    stack.push(bracketsInfo);
+                } else  if(bracketsInfo == ")" || bracketsInfo == "]" || bracketsInfo == "}"){
+                    if(stack.length==1){
+                        lastCharIndex = i;
+                    }
+                    stack.pop()
+                }
+            }
+            }
+            var str = a.replace(a[lastCharIndex],"<b>"+a[lastCharIndex]+"</b>")
+            document.querySelector("#b").innerHTML =  str;
+       }
+    </script>
+    </head>
+    <body>
+       <input type ="text" onchange="findEndBracket()" id="a" class="abc"/>
+       <p id ="b"></p>
+    </body>
+</html>
